@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+body {
+    background: rgb(255,255,255);
+    background: radial-gradient(circle, rgba(255,255,255,1) 0%, #e2fdff 100%, rgba(154,154,154,1) 100%);
+    margin: 0;
+    padding: 0;
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+
+#loginRegister {
+    background: linear-gradient(90deg, #11f79f 50%, #292929 50%);
+    position: absolute;
+    z-index: 3;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    height: 19em;
+    width: 35em;
+}
+
+#loginSection {
+    position: absolute;
+    display: block;
+    top: 2em;
+    left: 4em;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+    color: #292929;
+}
+
+.tittle_is {
+    margin-bottom: 1.5em;
+    text-align: center;
+}
+
+label {
+    margin: 0;
+    font-size: .7em;
+    padding: 0
+}
+
+.placeholders {
+    display: block;
+    border-radius: .5em;
+    padding: .5em .5em;
+    outline: none;
+    border: none;
+}
+
+#loginSection .placeholders {
+    color: white;
+    background-color: #292929;
+}
+
+.button_is {
+    margin-top: 1.5em;
+    text-align: center;
+    padding-left: 2.2em;
+}
+
+.button_is button {
+    cursor: pointer;
+    background-color: transparent !important;
+    border: #292929 2px solid !important;
+    color: #292929 !important;
+    font-weight: bold;
+}
+
+#registerPress {
+    background-color: #11f79f;
+    display: block;
+    position: absolute;
+    top: 8em;
+    width: auto;
+    display: block;
+    left: 49.9%;
+    padding-left: 1em;
+    padding-right: .8em;
+    border-top-right-radius: 1em;
+    opacity: 1;
+    transition:  opacity 0.5s ease-in-out, width 0.5s linear;
+    border-bottom-right-radius: 1em;
+}
+
+#sesionPress {
+    background-color: #292929;
+    width: auto; /* Cambiado */
+    display: block; /* Cambiado */
+    position: absolute;
+    top: 8em;
+    color: WHITE;
+    right: 49.9%;
+    padding-left: 1em;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out, width 0.5s linear; /* Agregado */
+    padding-right: .8em;
+    border-top-left-radius: 1em;
+    border-bottom-left-radius: 1em;
+}
+#regpress_ses, #tittlepress_ses {
+    font-size: 1.2em;
+    cursor: pointer !important;
+    transition: opacity 0.5s ease-in-out;
+}
+
+
+
+#registerSection {
+    position: absolute;
+    top: 1em;
+    display: none;
+    right: 4em;
+    color: #ffffff;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.button_reg {
+    margin-top: 1.5em;
+    text-align: center;
+    padding-left: 2.2em;
+}
+
+.button_reg button {
+    cursor: pointer;
+    background-color: transparent !important;
+    border: #ffffff 2px solid !important;
+    color: #ffffff !important;
+    font-weight: bold;
+}
+
+
+
