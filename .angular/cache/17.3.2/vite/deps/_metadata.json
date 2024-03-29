@@ -1,0 +1,76 @@
+{
+  "hash": "362df4df",
+  "configHash": "ddd50ee2",
+  "lockfileHash": "2b638d3d",
+  "browserHash": "64c3fe62",
+  "optimized": {
+    "@angular/common": {
+      "src": "../../../../../node_modules/@angular/common/fesm2022/common.mjs",
+      "file": "@angular_common.js",
+      "fileHash": "fa2465bc",
+      "needsInterop": false
+    },
+    "@angular/common/http": {
+      "src": "../../../../../node_modules/@angular/common/fesm2022/http.mjs",
+      "file": "@angular_common_http.js",
+      "fileHash": "946811f5",
+      "needsInterop": false
+    },
+    "@angular/core": {
+      "src": "../../../../../node_modules/@angular/core/fesm2022/core.mjs",
+      "file": "@angular_core.js",
+      "fileHash": "8438f44b",
+      "needsInterop": false
+    },
+    "@angular/forms": {
+      "src": "../../../../../node_modules/@angular/forms/fesm2022/forms.mjs",
+      "file": "@angular_forms.js",
+      "fileHash": "1d62b30f",
+      "needsInterop": false
+    },
+    "@angular/platform-browser": {
+      "src": "../../../../../node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs",
+      "file": "@angular_platform-browser.js",
+      "fileHash": "f1d2edc3",
+      "needsInterop": false
+    },
+    "@angular/platform-browser/animations/async": {
+      "src": "../../../../../node_modules/@angular/platform-browser/fesm2022/animations/async.mjs",
+      "file": "@angular_platform-browser_animations_async.js",
+      "fileHash": "a37df00b",
+      "needsInterop": false
+    },
+    "@angular/router": {
+      "src": "../../../../../node_modules/@angular/router/fesm2022/router.mjs",
+      "file": "@angular_router.js",
+      "fileHash": "614fbc15",
+      "needsInterop": false
+    },
+    "sweetalert2": {
+      "src": "../../../../../node_modules/sweetalert2/dist/sweetalert2.all.js",
+      "file": "sweetalert2.js",
+      "fileHash": "3cd504b0",
+      "needsInterop": true
+    }
+  },
+  "chunks": {
+    "browser-S5TQZQ5B": {
+      "file": "browser-S5TQZQ5B.js"
+    },
+    "chunk-SEJLGMUB": {
+      "file": "chunk-SEJLGMUB.js"
+    },
+    "chunk-NJSLEWZC": {
+      "file": "chunk-NJSLEWZC.js"
+    },
+    "chunk-HIBEIZRW": {
+      "file": "chunk-HIBEIZRW.js"
+    },
+    "chunk-GATIN5WM": {
+      "file": "chunk-GATIN5WM.js"
+    },
+    "chunk-WKYGNSYM": {
+      "file": "chunk-WKYGNSYM.js"
+    }
+  }
+}

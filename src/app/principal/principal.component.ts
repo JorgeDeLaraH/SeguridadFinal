@@ -3,7 +3,7 @@ import { AuthServiceService } from '../services/auth-service.service';
 import { AlertServiceService } from '../services/alert-service.service';
 import { Router} from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { BrowserModule } from '@angular/platform-browser';
+
 
 @Component({
   selector: 'app-principal',
@@ -18,24 +18,58 @@ export class PrincipalComponent implements OnInit {
   
   id:any
   nombre:any
-  normales=[]
-  admin=[]
-  superAdmin=[]
-
+  normales: any
+  admin: any
+  superAdmin: any
+  role=''
+  mostrarNormal:any
+  mostrarAdmin:any
+  mostrarSuper:any
+  mostrarBotones:any
   ngOnInit(): void {
-    let role="NormalUser"
-    this.getservice.getNormalUsers(role).subscribe((res)=>{
-      console.log("entre a get role")
-      this.normales=res.Respuesta
-      console.log(this.normales)
-    }
-    )
 
+    this.getservice.getNormalUsers("NormalUser").subscribe((res)=>{
+      this.normales=Object.entries(res.Respuesta)
+    })
+    this.getservice.getNormalUsers("Admin").subscribe((res)=>{
+      this.admin=Object.entries(res.Respuesta)
+    })
+    this.getservice.getNormalUsers("SuperAdmin").subscribe((res)=>{
+      this.superAdmin=Object.entries(res.Respuesta)
+    })
     if (typeof localStorage !== 'undefined') {
       this.id = localStorage.getItem('key');
       if (this.id !== null) {
         this.getservice.getUser(this.id).subscribe((res: any) => {
           this.nombre=res.Nombre
+          this.role=res.Rol
+          switch(this.role){
+            case 'NormalUser':{
+              this.mostrarNormal=true
+              this.mostrarAdmin=false
+              this.mostrarSuper=false
+              this.mostrarBotones=false
+              break;
+            }
+            case 'Admin':{
+              this.mostrarNormal=true
+              this.mostrarAdmin=true
+              this.mostrarSuper=false
+              this.mostrarBotones=true
+              break;
+            }
+            case 'SuperAdmin':{
+              this.mostrarNormal=true
+              this.mostrarAdmin=true
+              this.mostrarSuper=true
+              this.mostrarBotones=true
+              break;
+            }
+            default:{
+              alert("Opcion no valida")
+            }   
+          }
+
         })
       }
       else {
