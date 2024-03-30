@@ -59,6 +59,19 @@ def getUserByRole(role):
         print("Error en getUserByRole",e)
         return jsonify(ResponseMessage.err500)
 
+@app.route('/deleteUser', methods=['DELETE'])
+def deleteUser():
+    try:
+        id=None if("id" not in request.json) else request.json['id']
+        if id==None:
+            return jsonify(ResponseMessage.err203)
+        else:
+            objResult=CallMethod.fnDeleteUser(id)
+        return objResult
+    except Exception as e:
+        print("Error en deleteColaborador",e)
+        return jsonify(ResponseMessage.err500)
+    
 app.after_request
 def after_request(response):
   response.headers.add('Access-Control-Allow-Origin', 'http://localhost:4200')

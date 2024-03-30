@@ -80,3 +80,14 @@ def fnGetUserByRole(role):
     except Exception as e:
         print("Error en fngetcolabs",e)
         return jsonify(ResponseMessage.err500)
+
+def fnDeleteUser(id):
+    try:
+        print("Los datos que eliminare: ",id)
+        dbUsers.delete_one({"_id":ObjectId(id)})
+        objResponse=ResponseMessage.succ200.copy()
+        objResponse['Informacion_Borrada']=True
+        return jsonify(objResponse)
+    except Exception as e:
+        print("Error en fnDeleteColaborador",e)
+        return jsonify(ResponseMessage.err500)

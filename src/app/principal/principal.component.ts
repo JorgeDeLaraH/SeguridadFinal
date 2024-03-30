@@ -41,7 +41,21 @@ export class PrincipalComponent implements OnInit {
     rol:'',
     fullname:''
   }
-
+  idBorrar:any
+  capDel(id:number){
+    this.idBorrar=id
+  }
+  deleteUser(){
+    let data={
+      id: this.idBorrar
+    }
+    this.getservice.deleteUser(data).subscribe((res:any)=>{
+      if(res.Informacion_Borrada==true){
+        this.alertService.generalAlert("Estatus", "Usuario Eliminado", "success", "#277FF2");
+        this.ngOnInit()
+      }
+    })
+  }
   capturar(id:number){
     this.getservice.getUser(id).subscribe((res:any)=>{
       this.personaCapturada.curp=res.Curp
@@ -118,6 +132,7 @@ export class PrincipalComponent implements OnInit {
           this.getservice.postNewUser(data).subscribe((res:any)=>{
             if(res.Estatus_Guardado==true){
               this.alertService.generalAlert("Estatus", "Usuario Guardado", "success", "#277FF2");
+              this.ngOnInit()
             }else{
               this.alertService.generalAlert("Estatus", "Usuario no Guardado", "error", "#277FF2");
             } 

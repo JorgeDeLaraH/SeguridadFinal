@@ -29,7 +29,7 @@
             <td>{{item[1].Curp}}</td>
             <td>{{item[1].Role}}</td>
             <td *ngIf="mostrarBotones==true"><button class="btn-warning btn mx-3" data-bs-toggle="modal" data-bs-target="#editar" (click)="capturar(item[1]._id)">Editar</button><button
-                class="btn-danger btn">Eliminar</button></td>
+                (click)="capDel(item[1]._id)" class="btn-danger btn" data-bs-target="#borrar" data-bs-toggle="modal">Eliminar</button></td>
           </tr>
         </tbody>
       </table>
@@ -58,8 +58,8 @@
             <td>{{item[1].fullName}}</td>
             <td>{{item[1].Curp}}</td>
             <td>{{item[1].Role}}</td>
-            <td *ngIf="mostrarBotones==true"><button class="btn-warning btn mx-3" data-bs-toggle="modal" data-bs-target="#editar">Editar</button><button
-                class="btn-danger btn">Eliminar</button></td>
+            <td *ngIf="mostrarBotones==true"><button (click)="capturar(item[1]._id)" class="btn-warning btn mx-3" data-bs-toggle="modal" data-bs-target="#editar">Editar</button><button
+              (click)="capDel(item[1]._id)" class="btn-danger btn" data-bs-target="#borrar" data-bs-toggle="modal">Eliminar</button></td>
           </tr>
         </tbody>
       </table>
@@ -88,8 +88,8 @@
             <td>{{item[1].fullName}}</td>
             <td>{{item[1].Curp}}</td>
             <td>{{item[1].Role}}</td>
-            <td *ngIf="mostrarBotones==true"><button class="btn-warning btn mx-3" data-bs-toggle="modal" data-bs-target="#editar">Editar</button><button
-                class="btn-danger btn">Eliminar</button></td>
+            <td *ngIf="mostrarBotones==true"><button (click)="capturar(item[1]._id)" class="btn-warning btn mx-3" data-bs-toggle="modal" data-bs-target="#editar">Editar</button><button
+              (click)="capDel(item[1]._id)"  class="btn-danger btn" data-bs-target="#borrar" data-bs-toggle="modal">Eliminar</button></td>
             <td></td>
           </tr>
         </tbody>
@@ -142,7 +142,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button (click)="register()" type="button" class="btn btn-primary">Guardar Cambios</button>
+        <button (click)="register()" type="button" class="btn btn-primary" data-bs-dismiss="modal">Guardar Cambios</button>
       </div>
     </div>
   </div>
@@ -191,7 +191,26 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button (click)="register()" type="button" class="btn btn-primary">Guardar Cambios</button>
+        <button (click)="register()" type="button" data-bs-dismiss="modal" class="btn btn-primary">Guardar Cambios</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Borrar usuario-->
+<div class="modal fade" id="borrar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel1">Borrar</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!--capturamos los datos-->
+        <h3>Estas seguro de borrar al usuario?</h3>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button (click)="deleteUser()" type="button" class="btn btn-danger" data-bs-dismiss="modal">Borrar</button>
       </div>
     </div>
   </div>
