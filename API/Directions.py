@@ -38,6 +38,17 @@ def PostNewUser():
     except Exception as e:
         print("Error en auth",e)
         return jsonify(ResponseMessage.err500)
+
+@app.route('/newLog', methods=['GET','POST'])
+@cross_origin(allow_headers=['Content-Type'])
+def PostNewLog():
+    try:
+        info=request.json['mensaje']
+        objResult=CallMethod.fnPostNewLog(info)
+        return objResult
+    except Exception as e:
+        print("Error en auth",e)
+        return jsonify(ResponseMessage.err500)
     
 @app.route('/getUser/<id>', methods=['GET'])
 @cross_origin(allow_headers=['Content-Type'])

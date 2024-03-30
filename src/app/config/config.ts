@@ -6,3 +6,4 @@ export const _URL_GET_USER=_URL_SERVICES_BE+'/getUser/';
 export const _URL_GET_USERBYNORMAL=_URL_SERVICES_BE+'/getUserByRole/';
 export const _URL_POST_NEWUSER=_URL_SERVICES_BE+'/newUser';
 export const _URL_DELETE_USER=_URL_SERVICES_BE+'/deleteUser';
+export const _URL_LOGS=_URL_SERVICES_BE+'/newLog';

@@ -1,5 +1,6 @@
 from bson import ObjectId,json_util as j
 from flask import jsonify
+from datetime import datetime
 from pymongo import MongoClient
 import BackEnd.GlobalInfo.ResponseMessages as ResponseMessage
 import BackEnd.GlobalInfo.Keys as ColabsKey
@@ -9,6 +10,7 @@ if ColabsKey.dbconn==None:
     mongoConnect=MongoClient(ColabsKey.strConnection)
     ColabsKey.dbconn=mongoConnect[ColabsKey.strDBConnection]
     dbUsers=ColabsKey.dbconn["clUsers"]
+    dbLogs=ColabsKey.dbconn["clLogs"]
 #Esta funcion trae todos los datos de clColabs formateados
 #Funcion de post clientes
 def fnAuthPost(user,password):
@@ -30,6 +32,19 @@ def fnPostNewUser(user,password,curp,rol,fullname):
     try:
         print("Insercion de datos")
         dbUsers.insert_one({"UserName":user,"fullName":fullname,"password":password,"Curp":curp,"Role":rol})        
+        objResponse=ResponseMessage.succ200.copy()
+        objResponse['Estatus_Guardado']=True
+        return jsonify(objResponse)
+    except Exception as e:
+        objResponse=ResponseMessage.err500
+        objResponse["Estatus_Guardado"]=False
+        return jsonify(objResponse,e)
+    
+def fnPostNewLog(info):
+    try:
+        print("Insercion de datos")
+        info1=str(info)
+        dbLogs.insert_one({"Fecha": datetime.now(),"Informacion":info1})        
         objResponse=ResponseMessage.succ200.copy()
         objResponse['Estatus_Guardado']=True
         return jsonify(objResponse)

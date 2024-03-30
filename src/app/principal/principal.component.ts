@@ -49,6 +49,7 @@ export class PrincipalComponent implements OnInit {
     let data={
       id: this.idBorrar
     }
+    console.log("Prueba de id para borrar usuario: ",data)
     this.getservice.deleteUser(data).subscribe((res:any)=>{
       if(res.Informacion_Borrada==true){
         this.alertService.generalAlert("Estatus", "Usuario Eliminado", "success", "#277FF2");
@@ -62,7 +63,7 @@ export class PrincipalComponent implements OnInit {
       this.personaCapturada.fullname=res.Nombre
       this.personaCapturada.rol=res.Rol
       this.personaCapturada.user=res.user
-      
+      console.log(this.personaCapturada)
     })
   }
   ngOnInit(): void {
@@ -78,6 +79,7 @@ export class PrincipalComponent implements OnInit {
     })
     if (typeof localStorage !== 'undefined') {
       this.id = localStorage.getItem('key');
+      console.log("Esta es la prueba para obtener el id del local storage: ",this.id)
       if (this.id !== null) {
         this.getservice.getUser(this.id).subscribe((res: any) => {
           this.nombre=res.Nombre
@@ -129,6 +131,7 @@ export class PrincipalComponent implements OnInit {
             password: this.agregarPersona.password,
             fullname: this.agregarPersona.fullname
           }
+          console.log("Esta es la prueba para nueva persona: ",data)
           this.getservice.postNewUser(data).subscribe((res:any)=>{
             if(res.Estatus_Guardado==true){
               this.alertService.generalAlert("Estatus", "Usuario Guardado", "success", "#277FF2");

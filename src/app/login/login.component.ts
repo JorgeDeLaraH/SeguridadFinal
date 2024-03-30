@@ -33,6 +33,10 @@ export class LoginComponent{
       this.authService.authPost(data).subscribe((res: any) => {
         console.log(res)
         if (res.Estatus_Acreditado == true) {
+          let m={mensaje:res}
+          this.authService.newLog(m).subscribe((res)=>{
+            console.log("Listo se guardo el log")
+          })
           localStorage.setItem('key',res.Prueba)
           this.router.navigate(['principal'])
         }

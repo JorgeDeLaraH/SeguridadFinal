@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { _URL_AUTHUSER, _URL_DELETE_USER, _URL_GET_USER, _URL_GET_USERBYNORMAL, _URL_POST_NEWUSER } from '../config/config';
+import { _URL_AUTHUSER, _URL_DELETE_USER, _URL_GET_USER, _URL_GET_USERBYNORMAL, _URL_LOGS, _URL_POST_NEWUSER } from '../config/config';
 import { Observable } from 'rxjs';
 import { _URL_AUTH } from '../config/config';
 
@@ -25,5 +25,8 @@ export class AuthServiceService {
   }
   public deleteUser(data:Object):Observable<Object>{
     return this.http.delete(_URL_DELETE_USER,{body:data})
+  }
+  public newLog(data:Object):Observable<Object>{
+    return this.http.post(_URL_LOGS,data)
   }
 }
