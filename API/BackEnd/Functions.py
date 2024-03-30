@@ -25,7 +25,19 @@ def fnAuthPost(user,password):
         objResponse=ResponseMessage.err500
         objResponse["Estatus_Acreditado"]=False
         return jsonify(objResponse,e)
-
+    
+def fnPostNewUser(user,password,curp,rol,fullname):
+    try:
+        print("Insercion de datos")
+        dbUsers.insert_one({"UserName":user,"fullName":fullname,"password":password,"Curp":curp,"Role":rol})        
+        objResponse=ResponseMessage.succ200.copy()
+        objResponse['Estatus_Guardado']=True
+        return jsonify(objResponse)
+    except Exception as e:
+        objResponse=ResponseMessage.err500
+        objResponse["Estatus_Guardado"]=False
+        return jsonify(objResponse,e)
+    
 def fnGetUser(id):
     try:
         print("Comprobacion de credenciales")
@@ -33,10 +45,12 @@ def fnGetUser(id):
         nombre=objQuery.get('fullName')
         Role=objQuery.get('Role')
         curp=objQuery.get('Curp')
+        user=objQuery.get('UserName')
         objResponse=ResponseMessage.succ200.copy()
         objResponse['Nombre']=nombre
         objResponse['Curp']=curp
         objResponse['Rol']=Role
+        objResponse['user']=user
         objResponse['Estatus_Acreditado']=True
         print(objResponse)
         return jsonify(objResponse)

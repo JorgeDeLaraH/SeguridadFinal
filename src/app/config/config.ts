@@ -4,3 +4,4 @@ export const _URL_AUTH=_URL_SERVICES_BE+'/newClient';
 export const _URL_AUTHUSER=_URL_SERVICES_BE+'/auth';
 export const _URL_GET_USER=_URL_SERVICES_BE+'/getUser/';
 export const _URL_GET_USERBYNORMAL=_URL_SERVICES_BE+'/getUserByRole/';
+export const _URL_POST_NEWUSER=_URL_SERVICES_BE+'/newUser';

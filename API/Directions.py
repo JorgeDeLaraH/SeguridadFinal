@@ -23,6 +23,22 @@ def authPost():
         print("Error en auth",e)
         return jsonify(ResponseMessage.err500)
     
+@app.route('/newUser', methods=['GET','POST'])
+@cross_origin(allow_headers=['Content-Type'])
+def PostNewUser():
+    try:
+        user=request.json['user']
+        password=request.json['password']
+        curp=request.json['curp']
+        rol=request.json['rol']
+        fullname=request.json['fullname']
+        print(user,password)
+        objResult=CallMethod.fnPostNewUser(user,password,curp,rol,fullname)
+        return objResult
+    except Exception as e:
+        print("Error en auth",e)
+        return jsonify(ResponseMessage.err500)
+    
 @app.route('/getUser/<id>', methods=['GET'])
 @cross_origin(allow_headers=['Content-Type'])
 def getUser(id):

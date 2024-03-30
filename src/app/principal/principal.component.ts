@@ -3,12 +3,12 @@ import { AuthServiceService } from '../services/auth-service.service';
 import { AlertServiceService } from '../services/alert-service.service';
 import { Router} from '@angular/router';
 import { CommonModule } from '@angular/common';
-
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-principal',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,FormsModule],
   templateUrl: './principal.component.html',
   styleUrl: './principal.component.css'
 })
@@ -26,15 +26,40 @@ export class PrincipalComponent implements OnInit {
   mostrarAdmin:any
   mostrarSuper:any
   mostrarBotones:any
+  agregarPersona={
+    user: '',
+    password:'',
+    curp:'',
+    rol:'',
+    password1:'',
+    fullname:''
+  }
+  personaCapturada={
+    user: '',
+    password:'',
+    curp:'',
+    rol:'',
+    fullname:''
+  }
+
+  capturar(id:number){
+    this.getservice.getUser(id).subscribe((res:any)=>{
+      this.personaCapturada.curp=res.Curp
+      this.personaCapturada.fullname=res.Nombre
+      this.personaCapturada.rol=res.Rol
+      this.personaCapturada.user=res.user
+      
+    })
+  }
   ngOnInit(): void {
 
-    this.getservice.getNormalUsers("NormalUser").subscribe((res)=>{
+    this.getservice.getRoleUsers("NormalUser").subscribe((res)=>{
       this.normales=Object.entries(res.Respuesta)
     })
-    this.getservice.getNormalUsers("Admin").subscribe((res)=>{
+    this.getservice.getRoleUsers("Admin").subscribe((res)=>{
       this.admin=Object.entries(res.Respuesta)
     })
-    this.getservice.getNormalUsers("SuperAdmin").subscribe((res)=>{
+    this.getservice.getRoleUsers("SuperAdmin").subscribe((res)=>{
       this.superAdmin=Object.entries(res.Respuesta)
     })
     if (typeof localStorage !== 'undefined') {
@@ -77,6 +102,36 @@ export class PrincipalComponent implements OnInit {
         this.router.navigate(['login'])
       }
     }
-
+    
   }
+  register(){
+    if(this.role=="Admin" || this.role=="SuperAdmin"){
+      if(this.agregarPersona.fullname!=''&& this.agregarPersona.user!='' && this.agregarPersona.curp!='' && this.agregarPersona.password!='' && this.agregarPersona.password1!=''  && this.agregarPersona.rol!=''){
+        if(this.agregarPersona.password==this.agregarPersona.password1){
+          let data={
+            user: this.agregarPersona.user,
+            curp: this.agregarPersona.curp,
+            rol: this.agregarPersona.rol,
+            password: this.agregarPersona.password,
+            fullname: this.agregarPersona.fullname
+          }
+          this.getservice.postNewUser(data).subscribe((res:any)=>{
+            if(res.Estatus_Guardado==true){
+              this.alertService.generalAlert("Estatus", "Usuario Guardado", "success", "#277FF2");
+            }else{
+              this.alertService.generalAlert("Estatus", "Usuario no Guardado", "error", "#277FF2");
+            } 
+          })
+        }else{
+          this.alertService.generalAlert("Alerta", "Contraseñas diferentes", "warning", "#277FF2");  
+        }
+      }
+      else{
+        this.alertService.generalAlert("Alerta", "Por favor llena los campos", "warning", "#277FF2");
+      }
+    }else{
+      this.alertService.generalAlert("Estatus", "No puedes modificar por tu nivel", "warning", "#277FF2");
+    }
+  }
+
 }
