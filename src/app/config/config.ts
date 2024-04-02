@@ -1,4 +1,4 @@
-export const _IP = "192.168.18.6";
+export const _IP = "10.2.0.123";
 export const _URL_SERVICES_BE = 'http://'+_IP+':5000';
 export const _URL_AUTH=_URL_SERVICES_BE+'/newClient';
 export const _URL_AUTHUSER=_URL_SERVICES_BE+'/auth';

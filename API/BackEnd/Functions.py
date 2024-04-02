@@ -1,16 +1,23 @@
 from bson import ObjectId,json_util as j
 from flask import jsonify
 from datetime import datetime
-from pymongo import MongoClient
+from pymongo.mongo_client import MongoClient
+from pymongo.server_api import ServerApi
 import BackEnd.GlobalInfo.ResponseMessages as ResponseMessage
 import BackEnd.GlobalInfo.Keys as ColabsKey
 
 #Conexion a la base de datos
+uri = "mongodb+srv://neskuik42:Lpc8YghcfVS00nnE@seguridaddeaplicaciones.pfook2g.mongodb.net/?retryWrites=true&w=majority&appName=SeguridadDeAplicaciones"
+
 if ColabsKey.dbconn==None:
     mongoConnect=MongoClient(ColabsKey.strConnection)
     ColabsKey.dbconn=mongoConnect[ColabsKey.strDBConnection]
     dbUsers=ColabsKey.dbconn["clUsers"]
     dbLogs=ColabsKey.dbconn["clLogs"]
+    #client=MongoClient(uri,server_api=ServerApi('1'))
+    #ColabsKey.dbconn=client[ColabsKey.strDBConnection]
+    #dbUsers=ColabsKey.dbconn['clUsers']
+    #dbLogs=ColabsKey.dbconn["clLogs"]
 #Esta funcion trae todos los datos de clColabs formateados
 #Funcion de post clientes
 def fnAuthPost(user,password):
