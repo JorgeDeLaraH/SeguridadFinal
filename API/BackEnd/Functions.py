@@ -1,4 +1,4 @@
-from bson import ObjectId,json_util as j
+from bson import ObjectId
 from flask import jsonify
 from datetime import datetime
 from pymongo import MongoClient
@@ -15,7 +15,9 @@ if ColabsKey.dbconn==None:
 #Funcion de post clientes
 def fnAuthPost(user,password):
     try:
+        
         print("Comprobacion de credenciales")
+        
         objQuery=dbUsers.find_one({"UserName":user,"password":password})
         id=str(objQuery.get('_id'))
         if(user==objQuery.get('UserName') and password==objQuery.get('password')):
@@ -32,6 +34,28 @@ def fnPostNewUser(user,password,curp,rol,fullname):
     try:
         print("Insercion de datos")
         dbUsers.insert_one({"UserName":user,"fullName":fullname,"password":password,"Curp":curp,"Role":rol})        
+        objResponse=ResponseMessage.succ200.copy()
+        objResponse['Estatus_Guardado']=True
+        return jsonify(objResponse)
+    except Exception as e:
+        objResponse=ResponseMessage.err500
+        objResponse["Estatus_Guardado"]=False
+        return jsonify(objResponse,e)
+
+def fnUpdateUser(id,user,password,curp,rol,fullname):
+    try:
+        print("Insercion de datos")
+        print(id,user,password,curp,rol,fullname)
+        dbUsers.update_one(
+            {"_id": ObjectId(id)},
+            {"$set": {
+                "UserName": user,
+                "fullName": fullname,
+                "password": password,
+                "Curp": curp,
+                "Role": rol
+            }}
+        )
         objResponse=ResponseMessage.succ200.copy()
         objResponse['Estatus_Guardado']=True
         return jsonify(objResponse)
@@ -62,6 +86,7 @@ def fnGetUser(id):
         curp=objQuery.get('Curp')
         user=objQuery.get('UserName')
         objResponse=ResponseMessage.succ200.copy()
+        objResponse['id']=id
         objResponse['Nombre']=nombre
         objResponse['Curp']=curp
         objResponse['Rol']=Role

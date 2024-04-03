@@ -160,19 +160,19 @@
         <form>
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Usuario</label>
-            <input [(ngModel)]="agregarPersona.user" type="text" class="form-control" aria-describedby="emailHelp" [ngModelOptions]="{standalone: true}" [value]="personaCapturada.user">
+            <input [(ngModel)]="personaCapturada.user" type="text" class="form-control" aria-describedby="emailHelp" [ngModelOptions]="{standalone: true}" [value]="personaCapturada.user">
           </div>
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Nombre Completo</label>
-            <input [(ngModel)]="agregarPersona.fullname" type="text" class="form-control" aria-describedby="emailHelp" [ngModelOptions]="{standalone: true}" [value]="personaCapturada.fullname">
+            <input [(ngModel)]="personaCapturada.fullname" type="text" class="form-control" aria-describedby="emailHelp" [ngModelOptions]="{standalone: true}" [value]="personaCapturada.fullname">
           </div>
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Curp</label>
-            <input [(ngModel)]="agregarPersona.curp" type="text" class="form-control" aria-describedby="emailHelp" [ngModelOptions]="{standalone: true}" [value]="personaCapturada.curp">
+            <input [(ngModel)]="personaCapturada.curp" type="text" class="form-control" aria-describedby="emailHelp" [ngModelOptions]="{standalone: true}" [value]="personaCapturada.curp">
           </div>
           <div class="input-group mb-3">
             <label class="input-group-text" for="inputGroupSelect01">Rol</label>
-            <select [(ngModel)]="agregarPersona.rol" class="form-select" id="inputGroupSelect01" [ngModelOptions]="{standalone: true}" [value]="personaCapturada.rol">
+            <select [(ngModel)]="personaCapturada.rol" class="form-select" id="inputGroupSelect01" [ngModelOptions]="{standalone: true}" [value]="personaCapturada.rol">
               <option selected>Elige una opción</option>
               <option value="NormalUser">Usuario Normal</option>
               <option value="Admin">Admin</option>
@@ -181,17 +181,17 @@
           </div>
           <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Password</label>
-            <input [(ngModel)]="agregarPersona.password" type="password" class="form-control" [ngModelOptions]="{standalone: true}">
+            <input [(ngModel)]="personaCapturada.password" type="password" class="form-control" [ngModelOptions]="{standalone: true}">
           </div>
           <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Confirma por favor</label>
-            <input [(ngModel)]="agregarPersona.password1" type="password" class="form-control" [ngModelOptions]="{standalone: true}">
+            <input [(ngModel)]="personaCapturada.password1" type="password" class="form-control" [ngModelOptions]="{standalone: true}">
           </div>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button (click)="register()" type="button" data-bs-dismiss="modal" class="btn btn-primary">Guardar Cambios</button>
+        <button (click)="update()" type="button" data-bs-dismiss="modal" class="btn btn-primary">Guardar Cambios</button>
       </div>
     </div>
   </div>

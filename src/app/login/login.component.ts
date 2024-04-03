@@ -30,6 +30,7 @@ export class LoginComponent{
       password: this.usuario.password
     }
     if(data.user!='' && data.password!=''){
+      console.log(data)
       this.authService.authPost(data).subscribe((res: any) => {
         console.log(res)
         if (res.Estatus_Acreditado == true) {

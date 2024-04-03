@@ -39,6 +39,23 @@ def PostNewUser():
         print("Error en auth",e)
         return jsonify(ResponseMessage.err500)
 
+@app.route('/updateUser', methods=['PUT'])
+@cross_origin(allow_headers=['Content-Type'])
+def UpdateUser():
+    try:
+        id=request.json['id']
+        user=request.json['user']
+        password=request.json['password']
+        curp=request.json['curp']
+        rol=request.json['rol']
+        fullname=request.json['fullname']
+        print(user,password)
+        objResult=CallMethod.fnUpdateUser(id,user,password,curp,rol,fullname)
+        return objResult
+    except Exception as e:
+        print("Error en auth",e)
+        return jsonify(ResponseMessage.err500)
+
 @app.route('/newLog', methods=['GET','POST'])
 @cross_origin(allow_headers=['Content-Type'])
 def PostNewLog():

@@ -35,8 +35,10 @@ export class PrincipalComponent implements OnInit {
     fullname:''
   }
   personaCapturada={
+    id:'',
     user: '',
     password:'',
+    password1:'',
     curp:'',
     rol:'',
     fullname:''
@@ -59,12 +61,39 @@ export class PrincipalComponent implements OnInit {
   }
   capturar(id:number){
     this.getservice.getUser(id).subscribe((res:any)=>{
+      this.personaCapturada.id=res.id
       this.personaCapturada.curp=res.Curp
       this.personaCapturada.fullname=res.Nombre
       this.personaCapturada.rol=res.Rol
       this.personaCapturada.user=res.user
       console.log(this.personaCapturada)
     })
+  }
+  update(){
+    if(this.personaCapturada.password==this.personaCapturada.password1){
+      this.getservice.updateUser({
+        id: this.personaCapturada.id,
+        user:this.personaCapturada.user,
+        password: this.personaCapturada.password, 
+        curp: this.personaCapturada.curp,
+        rol: this.personaCapturada.rol,
+        fullname:this.personaCapturada.fullname
+      }).subscribe((res:any)=>{
+        if(res.Estatus_Guardado == true){
+          this.alertService.generalAlert("Aviso", "Los cambios fueron guardados", "success", "#277FF2")
+          let m={mensaje: "Actualizacion de datos: "+this.personaCapturada}
+          this.getservice.newLog(m).subscribe((res)=>{
+            console.log(res)
+          })
+          this.ngOnInit()
+        }else{
+          this.alertService.generalAlert("Alerta", "La informacion no fue guardada", "error", "#277FF2")
+        }
+      })
+    }else{
+      this.alertService.generalAlert("Alerta", "Las contraseñas son diferentes", "warning", "#277FF2")
+    }
+
   }
   ngOnInit(): void {
 
@@ -135,6 +164,7 @@ export class PrincipalComponent implements OnInit {
           this.getservice.postNewUser(data).subscribe((res:any)=>{
             if(res.Estatus_Guardado==true){
               this.alertService.generalAlert("Estatus", "Usuario Guardado", "success", "#277FF2");
+              this.getservice.newLog({mensaje: "Eliminacion de usuario: "+data})
               this.ngOnInit()
             }else{
               this.alertService.generalAlert("Estatus", "Usuario no Guardado", "error", "#277FF2");
